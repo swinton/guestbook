@@ -29,7 +29,7 @@ def handler(event, context):
 
 if __name__ == "__main__":
     # Read event, context from sys.argv
-    args = sys.argv[1:2]
+    args = [json.loads(arg) for arg in sys.argv[1:2]]
 
     # Provide None for event, context if not provided
     while len(args) < 2:
