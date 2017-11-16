@@ -3,6 +3,7 @@
 
 import sys, os
 import datetime
+import json
 
 import boto3
 from boto3.dynamodb.conditions import Key
@@ -36,4 +37,4 @@ if __name__ == "__main__":
         args.append(None)
 
     # Print the output
-    print handler(*args)
+    print json.dumps(handler(*args), indent=4)

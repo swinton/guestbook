@@ -13,8 +13,8 @@ function usage() {
 
 function build_package() {
     # Prepare package for deploy
-    source=$(mktemp -d)
-    dest=$(mktemp -d)
+    source=$(mktemp -d -t pkgsource)
+    dest=$(mktemp -d -t pkgdest)
 
     # Define requirements.txt
     if [ -e "Pipfile" ] ; then

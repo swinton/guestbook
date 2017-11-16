@@ -30,7 +30,7 @@ function main() {
     fi
 
     # Capture output in a temp file
-    dest=$( mktemp )
+    dest=$( mktemp -t output )
 
     # Invoke function, passing all options
     aws lambda invoke "${opts[@]}" "${dest}" >/dev/null
