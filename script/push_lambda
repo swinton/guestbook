@@ -4,7 +4,7 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
-AWS_S3_BUCKET=${AWS_S3_BUCKET:-wintronio}  # If variable not set, use default.
+AWS_S3_BUCKET=${AWS_S3_BUCKET:-swintonatgithubdotcom}  # If variable not set, use default.
 AWS_S3_BUCKET_PATH=${AWS_S3_BUCKET_PATH:-lambda}  # If variable not set, use default.
 
 
@@ -52,7 +52,7 @@ function create() {
     # Lambda options
     opts=()
     opts+=("--publish")
-    opts+=("--runtime"); opts+=("python2.7")
+    opts+=("--runtime"); opts+=("python3.7")
     opts+=("--role"); opts+=("${arn}")
     opts+=("--handler"); opts+=("${function_name}.handler")
     opts+=("--function-name"); opts+=("${function_name}")

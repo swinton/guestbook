@@ -33,6 +33,9 @@ function create_role() {
     # Role options
     opts=()
     opts+=("--role-name"); opts+=("$role")
+    # --assume-role-policy-document:
+    #   The trust relationship policy document that grants an entity
+    #   permission to assume the role.
     opts+=("--assume-role-policy-document"); opts+=("file://.aws/lambda-default-role-policy.json")
     opts+=("--description"); opts+=("Lambda execution role")
 
