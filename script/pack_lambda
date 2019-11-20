@@ -26,7 +26,7 @@ function build_package() {
 
     # Include dependencies defined via requirements.txt
     if [ -e "requirements.txt" ] ; then
-        pip install -r requirements.txt -t . >/dev/null
+        pip3 install -r requirements.txt -t . >/dev/null
     fi
 
     # Generate .zip file, exlude non-code files

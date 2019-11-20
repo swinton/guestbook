@@ -12,7 +12,7 @@ from decimal import Decimal
 
 
 def handler(event, context):
-    dynamodb = boto3.resource("dynamodb", region_name="us-east-1")
+    dynamodb = boto3.resource("dynamodb", region_name="eu-west-1")
     table = dynamodb.Table("Guestbook")
 
     now = datetime.datetime.utcnow()
@@ -37,4 +37,4 @@ if __name__ == "__main__":
         args.append(None)
 
     # Print the output
-    print json.dumps(handler(*args), indent=4)
+    print(json.dumps(handler(*args), indent=4))
