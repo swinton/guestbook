@@ -72,10 +72,13 @@ function table_exists() {
 }
 
 function create_table() {
-    aws dynamodb create-table \
-        --cli-input-json file://.aws/dynamodb-guestbook-table.json
+    table="$1"
+    table_lcase=$( echo "${table}" | tr '[:upper:]' '[:lower:]' )
 
-    aws dynamodb wait table-exists --table Guestbook
+    aws dynamodb create-table \
+        --cli-input-json "file://.aws/dynamodb-${table_lcase}-table.json"
+
+    aws dynamodb wait table-exists --table "${table}"
 }
 
 function main() {
@@ -95,7 +98,14 @@ function main() {
     if ! table_exists "Guestbook"
     then
         echo "Creating Guestbook table..."
-        create_table
+        create_table "Guestbook"
+    fi
+
+    # Make sure DynamoDB table exists
+    if ! table_exists "Messages"
+    then
+        echo "Creating Messages table..."
+        create_table "Messages"
     fi
 }
 
