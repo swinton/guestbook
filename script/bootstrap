@@ -36,7 +36,7 @@ function create_role() {
     # --assume-role-policy-document:
     #   The trust relationship policy document that grants an entity
     #   permission to assume the role.
-    opts+=("--assume-role-policy-document"); opts+=("file://.aws/lambda-default-role-policy.json")
+    opts+=("--assume-role-policy-document"); opts+=("file://.aws/lambda-assume-role-policy.json")
     opts+=("--description"); opts+=("Lambda execution role")
 
     # Create the role
@@ -45,10 +45,11 @@ function create_role() {
     # Role policy options
     opts=()
     opts+=("--role-name"); opts+=("$role")
-    opts+=("--policy-arn"); opts+=("arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole")
+    opts+=("--policy-name"); opts+=("lambda-full-access")
+    opts+=("--policy-document"); opts+=("file://.aws/lambda-full-access-policy.json")
 
-    # Attach role policy
-    aws iam attach-role-policy "${opts[@]}" > /dev/null
+    # Add an inline policy document to role
+    aws iam put-role-policy "${opts[@]}" > /dev/null
 }
 
 function table_exists() {
